@@ -29,7 +29,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GHTOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract metadata (tags/labels)
         id: meta
@@ -50,6 +50,3 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      # (Le step ci-dessus a déjà poussé vers les 2 registres grâce aux deux
-      # noms d'images fournis à metadata-action. Si tu préfères séparer, dupliques
-      # ce step avec 'tags' filtrés pour chaque registre.)
