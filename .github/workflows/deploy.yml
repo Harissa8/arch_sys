@@ -17,7 +17,7 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      # package what you want to deploy (adjust paths)
+      # package what you want to deploy (adjust pathys)
       - name: Archive artifact
         run: |
           rm -f package.zip
