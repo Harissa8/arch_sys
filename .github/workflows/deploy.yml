@@ -10,22 +10,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Build YOUR app (adjust to your stack)
-      # Node example:
+      # build steps (adjust to your project)
       - uses: actions/setup-node@v4
-        with: { node-version: 20 }
+        with:
+          node-version: 20
       - run: npm ci
       - run: npm run build
 
-      # Package (adjust path to your build output)
+      # package what you want to deploy (adjust paths)
       - name: Archive artifact
         run: |
-          rm -rf package.zip
+          rm -f package.zip
           zip -r package.zip . -x ".git/*" "node_modules/*"
 
       - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
-          app-name: harissa                    # <-- your Web App name
+          app-name: harissa
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}
           package: package.zip
