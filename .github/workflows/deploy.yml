@@ -24,7 +24,7 @@ jobs:
           zip -r package.zip . -x ".git/*" "node_modules/*"
 
       - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@v2
         with:
           app-name: harissa                    # <-- your Web App name
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}
